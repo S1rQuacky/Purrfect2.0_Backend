@@ -21,7 +21,7 @@ const locationRoute = require('./controllers/locations_controller');
 const purrs = require('./controllers/pets_controller');
 const resRoute = require('./controllers/reservation_controller');
 const userRoute = require('./controllers/user_controller');
-const userAuth = require('./controllers/userauth_controller');
+const userAuth = require('./controllers/login_controller');
 
 //Database connection
 //////////////////////
@@ -56,12 +56,12 @@ app.use(express.json()); // parse json bodies
 
 //Middleware Routes
 app.use('/', homeRoute);
-app.use('/myhostaccount', hostRoute);
+app.use('/host', hostRoute);
 app.use('/hostlogin', hostAuth);
 app.use('/locations', locationRoute);
 app.use('/pets', purrs);
 app.use('/reserve', resRoute);
-app.use('/myaccount', userRoute);
+app.use('/user', userRoute);
 app.use('/login', userAuth);
 
 ////////////////
