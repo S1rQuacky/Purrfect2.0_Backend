@@ -3,7 +3,7 @@ const Users = require('../models/userinfo');
 const router = express.Router();
 
 //consumer 
-//get account
+//get user account (once signed in, click button MyAccount)
 router.get("/", async(req, res) => {
     try {
         res.json(await Users.find({}))
@@ -11,7 +11,7 @@ router.get("/", async(req, res) => {
         res.status(400).json({error})
     }
 });
-//add account
+//add user account (Signup button)
 router.post('/', async(req, res) => {
     try{
         res.json(await Users.create(req.body));
@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
     }
 });
 
-//update account 
+//update user account (edit name, number address and pets )
 router.put('/:id', async (req, res) => {
     try {
         res.json(
@@ -31,7 +31,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-//show user account
+//get by id (show)view user account
 router.get('/:id', async (req, res) => {
     try {
         res.json(await Users.findById(req.params.id, req.body));

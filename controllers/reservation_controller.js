@@ -3,7 +3,7 @@ const Reservation = require('../models/reservationinfo')
 const router = express.Router();
 
 //consumer 
-//get account
+//get your reservations (once user is logged in)
 router.get("/", async(req, res) => {
     try {
         res.json(await Reservation.find({}))
@@ -11,7 +11,7 @@ router.get("/", async(req, res) => {
         res.status(400).json({error})
     }
 });
-//add account
+//create a reservation and have it added to your acct, location table and viewable by host(possibly remove from /get locations or remove reserve button)
 router.post('/', async(req, res) => {
     try{
         res.json(await Reservation.create(req.body));
@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
     }
 });
 
-//update account 
+//update a reservation (update dates or pet staying)
 router.put('/:id', async (req, res) => {
     try {
         res.json(
@@ -31,7 +31,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-//show user account
+//get by id(show), view your reservation details from your account
 router.get('/:id', async (req, res) => {
     try {
         res.json(await Reservation.findById(req.params.id, req.body));
@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-//delete account 
+//delete cancel your reservation 
 router.delete('/:id', async (req, res) => {
     try {
         res.json(await Reservation.findByIdAndRemove(req.params.id));

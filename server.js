@@ -21,7 +21,7 @@ const locationRoute = require('./controllers/locations_controller');
 const purrs = require('./controllers/pets_controller');
 const resRoute = require('./controllers/reservation_controller');
 const userRoute = require('./controllers/user_controller');
-const userAuth = require('./controllers/login_controller');
+const userAuth = require('./controllers/userauth_controller');
 
 //Database connection
 //////////////////////
