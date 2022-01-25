@@ -54,6 +54,7 @@ app.use(cors()); // to prevent cors errors, open access to all origins
 app.use(morgan("dev")); // logging
 app.use(express.json()); // parse json bodies
 
+
 //Middleware Routes
 app.use('/', homeRoute);
 app.use('/host', hostRoute);
