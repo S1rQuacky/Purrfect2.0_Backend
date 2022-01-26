@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 
 router.post("/",  (req, res) => {
     try {
-        console.log(req.body)
+        console.log(JSON.stringify(req.body))
          Host.find({email: req.body.email, password: req.body.password}, (err, user) => {
             if (!user) {
                 res.send("User not found")
@@ -33,29 +33,29 @@ router.post("/",  (req, res) => {
 });
 
 //Host login
-router.get("/", (req, res) => {
-    const {email, password} = req.body
-    Host.findOne({email}, (err, user) => {
-        if (!user) {
-            res.send("User does not exist")
-        } else {
-            const result = bcrypt.compareSync(password, user.password)
-            if (result) {
-                req.session.username = email
-                req.session.loggedIn = true
-                res.redirect("/locations")
-            } else {
-                res.send("Wrong Password")
-            }
-        }
-    })
-});
+// router.get("/:email", (req, res) => {
+//     const {email, password} = req.body
+//     Host.findOne({email}, (err, user) => {
+//         if (!user) {
+//             res.send("User does not exist")
+//         } else {
+//             const result = bcrypt.compareSync(password, user.password)
+//             if (result) {
+//                 req.session.username = email
+//                 req.session.loggedIn = true
+//                 res.redirect("/locations")
+//             } else {
+//                 res.send("Wrong Password")
+//             }
+//         }
+//     })
+// });
 
-router.get("/hostlogout", (req, res) => {
-    req.session.destroy((err) => {
-        res.redirect("/")
-    })
-})
+// router.get("/hostlogout", (req, res) => {
+//     req.session.destroy((err) => {
+//         res.redirect("/")
+//     })
+// })
 
 module.exports = router;
 
