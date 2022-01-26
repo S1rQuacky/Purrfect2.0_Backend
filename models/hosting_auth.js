@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 ////////////////////
 //Notes
@@ -8,11 +8,11 @@ const mongoose = require('mongoose');
 ///////////////
 //Models
 ///////////////
-const hostauthSchema = new mongoose.Schema({
-    username: {type: String, required: true, unique: true},
-    password: {type: String, required: true}
-})
+// const hostauthSchema = new mongoose.Schema({
+//     username: {type: String, required: true, unique: true},
+//     password: {type: String, required: true}
+// })
 
-const Hostauth = mongoose.model('Hostauth', hostauthSchema);
+// const Hostauth = mongoose.model('Hostauth', hostauthSchema);
 
-module.exports = Hostauth
+// module.exports = Hostauth
