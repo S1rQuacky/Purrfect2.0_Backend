@@ -52,14 +52,3 @@ router.delete('/:id', async (req, res) => {
 module.exports = router;
 
 
-//possible for router .post:
-// router.post('/signup', async(req, res) => {
-//     req.body.password = await bcrcypt.hash(req.body.password, await bcrcypt.genSalt(10))
-//     try{
-//         res.json(await Host.create(req.body, (err, host) => {
-//             res.redirect("/hostlogin")
-//         }));
-//     } catch (error) {
-//         res.status(400).json(error);
-//     }
-// });

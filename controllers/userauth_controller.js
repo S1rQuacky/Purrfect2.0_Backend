@@ -1,39 +1,35 @@
 const express = require('express');
 const router = express.Router();
-const Userauth = require('../models/user_auth');
+const Users = require('../models/userinfo');
 const bcrypt = require('bcryptjs');
 
 
-// router.post("/", async (req, res) => {
-//     req.body.password = await bcrypt.hash(req.body.password, await bcrypt.genSalt (10))
-//         Userauth.create(req.body, (err, user) => {
-//             res.redirect("/")
-//         })
-// })
-
-//consumer 
-router.get("/", (req, res) => {
-    const {username, password} = req.body
-    Userauth.findOne({username}, (err, user) => {
-        if (!user) {
-            res.send("Account does not exist")
-        } else {
-            const result = bcrypt.compareSync(password, user.password)
-            if (result) {
-                req.session.username = username
-                req.session.loggedIn = true
-                res.redirect("/locations")
+router.post("/",  (req, res) => {
+    try {
+        console.log(JSON.stringify(req.body))
+         Users.find({email: req.body.email, pwd: req.body.pwd}, (err, user) => {
+            if (!user) {
+                res.send("User not found")
             } else {
-                res.send("Wrong password")
+                const hidePwd = {
+                    first_name: user[0].first_name,
+                    last_name: user[0].last_name,
+                    email: user[0].email,
+                    phone_number: user[0].phone_number,
+                    pet_id: user[0].pet_id,
+                    img: user[0].img
+                }
+                
+                res.json(hidePwd)
             }
-        }
-    })
+            
+            
+        })
+       
+    } catch (error) {
+        res.status(400).json(error)
+    }
+    
 });
-
-router.get("/logout", (req, res) => {
-    req.session.destroy((err) => {
-        res.redirect("/")
-    })
-})
 
 module.exports = router;
