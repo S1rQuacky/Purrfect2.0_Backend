@@ -17,7 +17,8 @@ router.post("/",  (req, res) => {
                     email: user[0].email,
                     phone_number: user[0].phone_number,
                     pet_id: user[0].pet_id,
-                    img: user[0].img
+                    img: user[0].img,
+                    role: user[0].role
                 }
                 
                 res.json(hidePwd)

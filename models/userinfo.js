@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
     pwd: {type: String, required: true},
     phone_number: String,
     pet_id: [String],
-    img: String
+    img: String,
+    role: String
 
 })
 

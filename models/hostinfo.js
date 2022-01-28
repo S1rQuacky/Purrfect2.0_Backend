@@ -16,7 +16,8 @@ const hostSchema = new mongoose.Schema({
     password: {type: String, required: true},
     phone_number: String,
     description: String,
-    img: String
+    img: String,
+    role: String
 })
 
 const Host = mongoose.model('Host', hostSchema);
