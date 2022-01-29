@@ -31,10 +31,27 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+
 //get by id (show)view user account
-router.get('/:id', async (req, res) => {
+router.get('/:email', (req, res) => {
     try {
-        res.json(await Users.findById(req.params.id, req.body));
+        Users.find({email: req.params.email}, (err, user) => {
+            if (!user) {
+                res.send("User not found")
+            } else {
+                const hidePwd = {
+                    first_name: user[0].first_name,
+                    last_name: user[0].last_name,
+                    email: user[0].email,
+                    phone_number: user[0].phone_number,
+                    pet_id: user[0].pet_id,
+                    img: user[0].img,
+                    role: user[0].role
+                }
+                
+                res.json(hidePwd)
+            }
+        });
     } catch (error) {
         res.status(400).json(error);
     }
