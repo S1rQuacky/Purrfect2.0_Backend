@@ -40,6 +40,7 @@ router.get('/:email', (req, res) => {
                 res.send("User not found")
             } else {
                 const hidePwd = {
+                    id: user[0]._id,
                     first_name: user[0].first_name,
                     last_name: user[0].last_name,
                     email: user[0].email,
